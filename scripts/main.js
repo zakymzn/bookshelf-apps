@@ -5,10 +5,16 @@ const STORAGE_KEY = 'BOOKSHELF-APPS';
 
 document.addEventListener('DOMContentLoaded', () => {
   const buttonSubmitBook = document.getElementById('bookFormSubmit');
+  const buttonSubmitSearch = document.getElementById('searchSubmit');
 
   buttonSubmitBook.addEventListener('click', (event) => {
     event.preventDefault();
     addBook();
+  });
+
+  buttonSubmitSearch.addEventListener('click', (event) => {
+    event.preventDefault();
+    searchBook();
   });
 
   if (storageAvailable()) {
@@ -179,7 +185,7 @@ const loadFromStorage = () => {
 }
 
 const setBookIsComplete = (bookId, isComplete) => {
-  const book = searchBook(bookId);
+  const book = searchBookById(bookId);
 
   if (book === null) {
     return;
@@ -191,7 +197,7 @@ const setBookIsComplete = (bookId, isComplete) => {
 }
 
 const deleteBook = (bookId) => {
-  const book = searchBook(bookId);
+  const book = searchBookById(bookId);
 
   if (book === null) {
     return;
@@ -202,7 +208,7 @@ const deleteBook = (bookId) => {
   saveData();
 }
 
-const searchBook = (bookId) => {
+const searchBookById = (bookId) => {
   for (const book of bookList) {
     if (book.id === bookId) {
       return book;
@@ -210,4 +216,20 @@ const searchBook = (bookId) => {
   }
 
   return null;
+}
+
+const searchBook = () => {
+  const searchInput = document.getElementById('searchBookTitle').value.toLowerCase();
+  const bookCard = document.getElementsByClassName('book-card');
+
+  for (let index = 0; index < bookCard.length; index++) {
+    let bookTitle = bookCard[index].getElementsByTagName('h3')[0];
+    let itemValue = bookTitle.textContent || bookTitle.innerText;
+
+    if (itemValue.toLowerCase().indexOf(searchInput) > -1) {
+      bookCard[index].style.display = "";
+    } else {
+      bookCard[index].style.display = "none";
+    }
+  }
 }
