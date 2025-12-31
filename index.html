@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookshelf App</title>
 
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles/index.css" />
 
     <!-- Impor script kamu di sini -->
     <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
-    <script defer src="main.js"></script>
+    <script defer src="scripts/main.js"></script>
   </head>
   <body>
     <div class="container">
@@ -71,7 +71,7 @@
 									data-testid="bookFormSubmitButton"
 									class="btn-submit"
 								>
-									Masukkan Buku ke rak <span>Belum selesai dibaca</span>
+									Masukkan Buku ke rak <span id="isCompleteButtonText">Belum selesai dibaca</span>
 								</button>
 							</div>
           	</form>
@@ -117,44 +117,41 @@
 						</div>
 						<div class="form-content">
 							<div
-              id="incompleteBookList"
-              class="books-grid"
-              data-testid="incompleteBookList"
-            >
-              <!-- 
-             Ini adalah struktur HTML untuk masing-masing buku.
-             Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-           -->
-              <div
-                data-bookid="123123123"
-                data-testid="bookItem"
-                class="book-card"
-              >
-                <h3 data-testid="bookItemTitle">Judul Buku 1</h3>
-                <p data-testid="bookItemAuthor">Penulis: Penulis Buku 1</p>
-                <p data-testid="bookItemYear">Tahun: 2030</p>
-                <div class="input-inline">
-                  <button
-                    data-testid="bookItemIsCompleteButton"
-                    class="btn-secondary"
-                  >
-                    Selesai dibaca
-                  </button>
-                  <button
-                    data-testid="bookItemDeleteButton"
-                    class="btn-secondary"
-                  >
-                    Hapus Buku
-                  </button>
-                  <button
-                    data-testid="bookItemEditButton"
-                    class="btn-secondary"
-                  >
-                    Edit Buku
-                  </button>
-                </div>
-              </div>
-            </div>
+								id="incompleteBookList"
+								class="books-grid"
+								data-testid="incompleteBookList"
+							>
+								<!-- 
+							Ini adalah struktur HTML untuk masing-masing buku.
+							Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+						-->
+								<div
+									data-bookid="123123123"
+									data-testid="bookItem"
+									class="book-card"
+								>
+									<h3 data-testid="bookItemTitle">Judul Buku 1</h3>
+									<p data-testid="bookItemAuthor">Penulis: Penulis Buku 1</p>
+									<p data-testid="bookItemYear">Tahun: 2030</p>
+									<div class="input-inline">
+										<button
+											data-testid="bookItemIsCompleteButton"
+										>
+											Selesai dibaca
+										</button>
+										<button
+											data-testid="bookItemDeleteButton"
+										>
+											Hapus Buku
+										</button>
+										<button
+											data-testid="bookItemEditButton"
+										>
+											Edit Buku
+										</button>
+									</div>
+								</div>
+							</div>
 						</div>
           </section>
 
@@ -183,19 +180,16 @@
 									<div class="input-inline">
 										<button
 											data-testid="bookItemIsCompleteButton"
-											class="btn-secondary"
 										>
 											Belum selesai dibaca
 										</button>
 										<button
 											data-testid="bookItemDeleteButton"
-											class="btn-secondary"
 										>
 											Hapus Buku
 										</button>
 										<button
 											data-testid="bookItemEditButton"
-											class="btn-secondary"
 										>
 											Edit Buku
 										</button>

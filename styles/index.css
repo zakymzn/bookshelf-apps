@@ -135,7 +135,6 @@ input[type="checkbox"]:checked::before {
 
 .form-card {
   flex: 1;
-  box-shadow: 0 8px 18px rgba(45, 35, 30, 0.08);
 }
 
 .form-header {
@@ -176,6 +175,18 @@ input[type="checkbox"]:checked::before {
   grid-template-columns: 1em auto;
   gap: 1.25em;
   align-items: center;
+}
+
+.book-list-container {
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  border-top: 0;
+  border-left: 2px;
+  border-right: 2px;
+  border-bottom: 2px;
+  border-color: var(--teak);
+  border-style: solid;
+  padding: 12px;
 }
 
 .btn-submit {
