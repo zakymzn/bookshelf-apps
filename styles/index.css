@@ -34,7 +34,6 @@ header {
 }
 
 header h1 {
-  font-size: 2.5em;
   margin-bottom: 10px;
   text-shadow: 1px 1px 0 rgba(255,255,255,0.25), 2px 2px 6px rgba(0,0,0,0.06);
 }
@@ -43,6 +42,11 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+.no-books {
+  padding: 16px;
+  text-align: center;
 }
 
 .books-grid {
@@ -65,19 +69,18 @@ main {
 }
 
 .book-card h2 {
-  color: var(--bay); /* warm coffee tone */
-  margin-bottom: 10px;
+  color: var(--bay);
   font-size: 1.3em;
 }
 
 .book-card p {
   color: var(--country-brown);
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin-bottom: 4px;
 }
 
 button {
-  background: linear-gradient(135deg, #8b5a2b 0%, #c79a64 100%); /* wood-tone buttons */
+  background: linear-gradient(135deg, #8b5a2b 0%, #c79a64 100%);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -87,6 +90,12 @@ button {
 }
 
 button:hover {
+  transform: translateY(-2px);
+  opacity: 0.98;
+}
+
+.delete-button:hover {
+  background: linear-gradient(135deg, maroon 0%, red 100%);
   transform: translateY(-2px);
   opacity: 0.98;
 }

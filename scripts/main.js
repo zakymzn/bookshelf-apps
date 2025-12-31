@@ -20,15 +20,17 @@ document.addEventListener(RENDER_EVENT, () => {
   const incompleteBookList = document.getElementById('incompleteBookList');
   const completeBookList = document.getElementById('completeBookList');
 
-  incompleteBookList.innerHTML = '';
-  completeBookList.innerHTML = '';
+  incompleteBookList.innerHTML = "<div class='no-books'>&#9785 Kamu belum membaca buku apapun</div>";
+  completeBookList.innerHTML = "<div class='no-books'>&#9785 Belum ada buku yang selesai dibaca nih</div>";
 
   for (const bookItem of bookList) {
     const book = setBookData(bookItem);
 
     if (!bookItem.isComplete) {
+      incompleteBookList.innerHTML = '';
       incompleteBookList.append(book);
     } else {
+      completeBookList.innerHTML = '';
       completeBookList.append(book);
     }
   }
@@ -39,13 +41,8 @@ document.addEventListener(SAVED_EVENT, () => {
 });
 
 document.getElementById('bookFormIsComplete').addEventListener('input', () => {
-  const incompleteBookList = document.getElementById('incompleteBookList');
-  const completeBookList = document.getElementById('completeBookList');
   const isComplete = document.getElementById('bookFormIsComplete').checked;
   const isCompleteButtonText = document.getElementById('isCompleteButtonText');
-
-  incompleteBookList.innerHTML = '';
-  completeBookList.innerHTML = '';
 
   if (isComplete) {
     isCompleteButtonText.innerText = 'Selesai dibaca';
@@ -126,14 +123,15 @@ const setBookData = (bookData) => {
 
   const bookAuthor = document.createElement('p');
   bookAuthor.setAttribute('data-testid', 'bookItemAuthor');
-  bookAuthor.innerText = bookData.author;
+  bookAuthor.innerText = `Penulis: ${bookData.author}`;
 
   const bookYear = document.createElement('p');
   bookYear.setAttribute('data-testid', 'bookItemYear');
-  bookYear.innerText = bookData.year;
+  bookYear.innerText = `Tahun: ${bookData.year}`;
 
   const deleteButton = document.createElement('button');
   deleteButton.setAttribute('data-testid', 'bookItemDeleteButton');
+  deleteButton.setAttribute('class', 'delete-button');
   deleteButton.innerText = 'Hapus Buku';
   deleteButton.addEventListener('click', () => {
     deleteBook(bookData.id);
