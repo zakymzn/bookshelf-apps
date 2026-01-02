@@ -26,17 +26,16 @@ document.addEventListener(RENDER_EVENT, () => {
   const incompleteBookList = document.getElementById('incompleteBookList');
   const completeBookList = document.getElementById('completeBookList');
 
-  incompleteBookList.innerHTML = "<div class='no-books'>&#9785 Kamu belum membaca buku apapun</div>";
-  completeBookList.innerHTML = "<div class='no-books'>&#9785 Belum ada buku yang selesai dibaca nih</div>";
+  console.log("booklist length:", bookList.length);
+  incompleteBookList.innerHTML = '';
+  completeBookList.innerHTML = '';
 
   for (const bookItem of bookList) {
     const book = setBookData(bookItem);
 
     if (!bookItem.isComplete) {
-      incompleteBookList.innerHTML = '';
       incompleteBookList.append(book);
     } else {
-      completeBookList.innerHTML = '';
       completeBookList.append(book);
     }
   }
@@ -143,8 +142,15 @@ const setBookData = (bookData) => {
     deleteBook(bookData.id);
   });
 
+  const editButton = document.createElement('button');
+  editButton.setAttribute('data-testid', 'bookItemEditButton');
+  editButton.innerText = 'Edit Buku';
+  editButton.addEventListener('click', () => {
+    editBook(bookData.id);
+  });
+
   const buttonsContainer = document.createElement('div');
-  buttonsContainer.setAttribute('class', 'input-inline');
+  buttonsContainer.setAttribute('class', 'inline-container');
 
   if (bookData.isComplete) {
     const bookIsIncompleteButton = document.createElement('button');
@@ -154,7 +160,7 @@ const setBookData = (bookData) => {
       setBookIsComplete(bookData.id, false);
     });
 
-    buttonsContainer.append(bookIsIncompleteButton, deleteButton);
+    buttonsContainer.append(bookIsIncompleteButton, deleteButton, editButton);
   } else {
     const bookIsCompleteButton = document.createElement('button');
     bookIsCompleteButton.setAttribute('data-testid', 'bookItemIsCompleteButton');
@@ -163,7 +169,7 @@ const setBookData = (bookData) => {
       setBookIsComplete(bookData.id, true);
     });
 
-    buttonsContainer.append(bookIsCompleteButton, deleteButton);
+    buttonsContainer.append(bookIsCompleteButton, deleteButton, editButton);
   }
 
   bookCard.append(bookTitle, bookAuthor, bookYear, buttonsContainer);
@@ -206,6 +212,61 @@ const deleteBook = (bookId) => {
   bookList.splice(book, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
+}
+
+const editBook = (bookId) => {
+  const editCard = document.getElementById('editCard');
+  const main = document.getElementsByTagName('main')[0];
+  const buttonCancel = document.getElementById('bookCancelEdit');
+  const buttonSaveChanges = document.getElementById('bookEditFormSubmit');
+
+  editCard.style.display = "block";
+  main.style.filter = "blur(5px)";
+
+  const bookData = bookList.find(book => book.id === bookId);
+  console.log(bookData);
+
+  let bookTitle = document.getElementById('bookEditFormTitle');
+  let bookAuthor = document.getElementById('bookEditFormAuthor');
+  let bookYear = document.getElementById('bookEditFormYear');
+
+  bookTitle.value = bookData.title;
+  bookAuthor.value = bookData.author;
+  bookYear.value = bookData.year;
+
+  console.log("title:", bookTitle.value);
+  console.log("author:", bookAuthor.value);
+  console.log("year:", bookYear.value);
+
+  buttonCancel.addEventListener('click', () => {
+    editCard.style.display = "none";
+    main.style.filter = "none";
+    bookTitle = '';
+    bookAuthor = '';
+    bookYear = '';
+  });
+
+  buttonSaveChanges.addEventListener('click', () => {
+    if (!bookTitle) {
+      return alert('Judul buku harus diisi');
+    }
+
+    if (!bookAuthor) {
+      return alert('Penulis buku harus diisi');
+    }
+
+    if (!bookYear) {
+      return alert('Tahun penerbitan buku harus diisi');
+    }
+
+    if (bookData) {
+      bookData.title = bookTitle.value;
+      bookData.author = bookAuthor.value;
+      bookData.year = bookYear.value;
+    }
+    document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
+  });
 }
 
 const searchBookById = (bookId) => {

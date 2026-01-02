@@ -7,6 +7,10 @@
   --cotton-cream: #e3d7c8;
 }
 
+.blur {
+  filter: blur(5px);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,11 +23,6 @@ body {
   background: linear-gradient(135deg, #f7f1e6 0%, #e6d3b8 45%, #cdb08a 100%);
   min-height: 100vh;
   padding: 20px;
-}
-
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
 header {
@@ -42,6 +41,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .no-books {
@@ -56,6 +58,7 @@ main {
 }
 
 .book-card {
+  width: 100%;
   background: var(--paper-white);
   border-radius: 12px;
   padding: 20px;
@@ -206,7 +209,20 @@ input[type="checkbox"]:checked::before {
   font-weight: bold;
 }
 
-.input-inline {
+.btn-cancel {
+  background: transparent;
+  color: var(--soothing-dark-brown);
+  border: 2px solid var(--teak);
+  transition: all;
+  transition-duration: 200ms;
+}
+
+.btn-cancel:hover {
+  background: linear-gradient(135deg, #c79a64 0%, #c79a64 100%);
+  color: white;
+}
+
+.inline-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
@@ -228,4 +244,22 @@ input[type="checkbox"]:checked::before {
   flex-wrap: wrap;
   gap: 1em;
   justify-content: space-between;
+}
+
+.edit-card {
+  display: none;
+  width: 100%;
+  max-width: 1000px;
+  height: fit-content;
+  position: fixed;
+  background: linear-gradient(135deg, #f7f1e6 0%, #e6d3b8 45%, #cdb08a 100%);
+  border-radius: 12px;
+  left: 0;
+  right: 0;
+  justify-self: center;
+  z-index: 9999;
+}
+
+.edit-inline {
+  justify-content: right;
 }

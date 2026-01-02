@@ -12,194 +12,181 @@
     <script defer src="scripts/main.js"></script>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>Bookshelf App</h1>
-      </header>
+    <header>
+			<h1>Bookshelf App</h1>
+		</header>
 
-      <main>
-        <section class="form-card">
-          <div class="form-header">
-            <h2>Tambah Buku Baru</h2>
-          </div>
-					<div class="form-content">
-						<form id="bookForm" data-testid="bookForm" class="form-grid">
-							<div class="form-group">
-								<label for="bookFormTitle">Judul</label>
+		<div id="editCard" class="form-card edit-card">
+			<div class="form-header">
+				<h2>Edit Buku</h2>
+			</div>
+			<div class="form-content">
+				<form id="bookEditForm" data-testid="bookEditForm" class="form-grid">
+					<div class="form-group">
+						<label for="bookEditFormTitle">Judul</label>
+						<input
+							id="bookEditFormTitle"
+							type="text"
+							required
+							data-testid="bookEditFormTitleInput"
+							placeholder="Masukkan judul buku..."
+						/>
+					</div>
+					<div class="form-group">
+						<label for="bookEditFormAuthor">Penulis</label>
+						<input
+							id="bookEditFormAuthor"
+							type="text"
+							required
+							data-testid="bookEditFormAuthorInput"
+							placeholder="Masukkan penulis buku..."
+						/>
+					</div>
+					<div class="form-group">
+						<label for="bookEditFormYear">Tahun</label>
+						<input
+							id="bookEditFormYear"
+							type="number"
+							required
+							data-testid="bookEditFormYearInput"
+							placeholder="Masukkan tahun terbit..."
+						/>
+					</div>
+					<div class="inline-container edit-inline">
+						<button id="bookCancelEdit" class="btn-cancel">Batal</button>
+						<button
+							id="bookEditFormSubmit"
+							type="submit"
+							data-testid="bookEditFormSubmitButton"
+							class=""
+						>
+							Simpan Perubahan
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<main>
+			<section class="form-card">
+				<div class="form-header">
+					<h2>Tambah Buku Baru</h2>
+				</div>
+				<div class="form-content">
+					<form id="bookForm" data-testid="bookForm" class="form-grid">
+						<div class="form-group">
+							<label for="bookFormTitle">Judul</label>
+							<input
+								id="bookFormTitle"
+								type="text"
+								required
+								data-testid="bookFormTitleInput"
+								placeholder="Masukkan judul buku..."
+							/>
+						</div>
+						<div class="form-group">
+							<label for="bookFormAuthor">Penulis</label>
+							<input
+								id="bookFormAuthor"
+								type="text"
+								required
+								data-testid="bookFormAuthorInput"
+								placeholder="Masukkan penulis buku..."
+							/>
+						</div>
+						<div class="form-group">
+							<label for="bookFormYear">Tahun</label>
+							<input
+								id="bookFormYear"
+								type="number"
+								required
+								data-testid="bookFormYearInput"
+								placeholder="Masukkan tahun terbit..."
+							/>
+						</div>
+						<div class="form-group">
+							<label for="bookFormIsComplete" class="form-control">
 								<input
-									id="bookFormTitle"
-									type="text"
-									required
-									data-testid="bookFormTitleInput"
-									placeholder="Masukkan judul buku..."
+									id="bookFormIsComplete"
+									type="checkbox"
+									data-testid="bookFormIsCompleteCheckbox"
 								/>
-							</div>
-							<div class="form-group">
-								<label for="bookFormAuthor">Penulis</label>
+								Selesai dibaca
+							</label>
+						</div>
+						<div class="form-actions">
+							<button
+								id="bookFormSubmit"
+								type="submit"
+								data-testid="bookFormSubmitButton"
+								class="btn-submit"
+							>
+								Masukkan Buku ke rak <span id="isCompleteButtonText">Belum selesai dibaca</span>
+							</button>
+						</div>
+					</form>
+				</div>
+			</section>
+
+			<section class="form-card">
+				<div class="form-header">
+					<h2>Cari Buku</h2>
+				</div>
+				<div class="form-content">
+					<form
+					id="searchBook"
+					data-testid="searchBookForm"
+				>
+						<div class="form-group">
+							<!-- <label for="searchBookTitle">Judul</label> -->
+							<div class="inline-form">
 								<input
-									id="bookFormAuthor"
-									type="text"
-									required
-									data-testid="bookFormAuthorInput"
-									placeholder="Masukkan penulis buku..."
+								id="searchBookTitle"
+								type="text"
+								data-testid="searchBookFormTitleInput"
+								placeholder="Cari judul buku..."
 								/>
-							</div>
-							<div class="form-group">
-								<label for="bookFormYear">Tahun</label>
-								<input
-									id="bookFormYear"
-									type="number"
-									required
-									data-testid="bookFormYearInput"
-									placeholder="Masukkan tahun terbit..."
-								/>
-							</div>
-							<div class="form-group">
-								<label for="bookFormIsComplete" class="form-control">
-									<input
-										id="bookFormIsComplete"
-										type="checkbox"
-										data-testid="bookFormIsCompleteCheckbox"
-									/>
-									Selesai dibaca
-								</label>
-							</div>
-							<div class="form-actions">
 								<button
-									id="bookFormSubmit"
-									type="submit"
-									data-testid="bookFormSubmitButton"
-									class="btn-submit"
-								>
-									Masukkan Buku ke rak <span id="isCompleteButtonText">Belum selesai dibaca</span>
-								</button>
+								id="searchSubmit"
+								type="submit"
+								data-testid="searchBookFormSubmitButton"
+								class="btn-search"
+							>
+							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+							</button>
 							</div>
-          	</form>
-					</div>
-        </section>
+						</div>
+					</form>
+				</div>
+			</section>
 
-        <section class="form-card">
-          <div class="form-header">
-            <h2>Cari Buku</h2>
-          </div>
+			<section class="status-complete-container">
+				<section class="form-card">
+					<div class="form-header">
+						<h2>Belum selesai dibaca</h2>
+					</div>
 					<div class="form-content">
-						<form
-            id="searchBook"
-            data-testid="searchBookForm"
-          >
-							<div class="form-group">
-								<!-- <label for="searchBookTitle">Judul</label> -->
-								<div class="inline-form">
-									<input
-									id="searchBookTitle"
-									type="text"
-									data-testid="searchBookFormTitleInput"
-									placeholder="Cari judul buku..."
-									/>
-									<button
-									id="searchSubmit"
-									type="submit"
-									data-testid="searchBookFormSubmitButton"
-									class="btn-search"
-								>
-								<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
-								</button>
-								</div>
-							</div>
-          	</form>
+						<div
+							id="incompleteBookList"
+							class="books-grid"
+							data-testid="incompleteBookList"
+						></div>
 					</div>
-        </section>
+				</section>
 
-        <section class="status-complete-container">
-          <section class="form-card">
-						<div class="form-header">
-							<h2>Belum selesai dibaca</h2>
-						</div>
-						<div class="form-content">
-							<div
-								id="incompleteBookList"
-								class="books-grid"
-								data-testid="incompleteBookList"
-							>
-								<!-- 
-							Ini adalah struktur HTML untuk masing-masing buku.
-							Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-						-->
-								<div
-									data-bookid="123123123"
-									data-testid="bookItem"
-									class="book-card"
-								>
-									<h3 data-testid="bookItemTitle">Judul Buku 1</h3>
-									<p data-testid="bookItemAuthor">Penulis: Penulis Buku 1</p>
-									<p data-testid="bookItemYear">Tahun: 2030</p>
-									<div class="input-inline">
-										<button
-											data-testid="bookItemIsCompleteButton"
-										>
-											Selesai dibaca
-										</button>
-										<button
-											data-testid="bookItemDeleteButton"
-										>
-											Hapus Buku
-										</button>
-										<button
-											data-testid="bookItemEditButton"
-										>
-											Edit Buku
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-          </section>
-
-          <section class="form-card">
-						<div class="form-header">
-							<h2>Selesai dibaca</h2>
-						</div>
-						<div class="form-content">
-							<div
-								id="completeBookList"
-								class="books-grid"
-								data-testid="completeBookList"
-							>
-								<!-- 
-							Ini adalah struktur HTML untuk masing-masing buku.
-							Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-						-->
-								<div
-									data-bookid="456456456"
-									data-testid="bookItem"
-									class="book-card"
-								>
-									<h3 data-testid="bookItemTitle">Judul Buku 2</h3>
-									<p data-testid="bookItemAuthor">Penulis: Penulis Buku 2</p>
-									<p data-testid="bookItemYear">Tahun: 2030</p>
-									<div class="input-inline">
-										<button
-											data-testid="bookItemIsCompleteButton"
-										>
-											Belum selesai dibaca
-										</button>
-										<button
-											data-testid="bookItemDeleteButton"
-										>
-											Hapus Buku
-										</button>
-										<button
-											data-testid="bookItemEditButton"
-										>
-											Edit Buku
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-          </section>
-        </>
-      </main>
-    </div>
+				<section class="form-card">
+					<div class="form-header">
+						<h2>Selesai dibaca</h2>
+					</div>
+					<div class="form-content">
+						<div
+							id="completeBookList"
+							class="books-grid"
+							data-testid="completeBookList"
+						></div>
+					</div>
+				</section>
+			</section>
+		</main>
   </body>
 </html>
