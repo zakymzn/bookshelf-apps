@@ -26,9 +26,17 @@ document.addEventListener(RENDER_EVENT, () => {
   const incompleteBookList = document.getElementById('incompleteBookList');
   const completeBookList = document.getElementById('completeBookList');
 
-  console.log("booklist length:", bookList.length);
-  incompleteBookList.innerHTML = '';
-  completeBookList.innerHTML = '';
+  if (bookList.length === 0) {
+    incompleteBookList.innerHTML = `<div id="noIncompleteBook" class='no-books'>&#9785 Kamu belum membaca buku apapun</div>`;
+  } else {
+    incompleteBookList.innerHTML = '';
+  }
+
+  if (bookList.length === 0) {
+    completeBookList.innerHTML = `<div id="noCompleteBook" class='no-books'>&#9785 Belum ada buku yang selesai dibaca nih</div>`;
+  } else {
+    completeBookList.innerHTML = '';
+  }
 
   for (const bookItem of bookList) {
     const book = setBookData(bookItem);
@@ -56,7 +64,7 @@ document.getElementById('bookFormIsComplete').addEventListener('input', () => {
   }
 });
 
-document.getElementById('copyright').innerHTML = `&copy; ${new Date().getFullYear()} by Ma'mur Zaky Nurrokhman`
+document.getElementById('copyright').innerHTML = `&copy; ${new Date().getFullYear()} by Ma'mur Zaky Nurrokhman`;
 
 const addBook = () => {
   const bookTitle = document.getElementById('bookFormTitle').value;
