@@ -26,13 +26,16 @@ document.addEventListener(RENDER_EVENT, () => {
   const incompleteBookList = document.getElementById('incompleteBookList');
   const completeBookList = document.getElementById('completeBookList');
 
-  if (bookList.length === 0) {
+  const hasIncomplete = bookList.some(book => !book.isComplete);
+  const hasComplete = bookList.some(book => book.isComplete);
+
+  if (!hasIncomplete) {
     incompleteBookList.innerHTML = `<div id="noIncompleteBook" class='no-books'>&#9785 Kamu belum membaca buku apapun</div>`;
   } else {
     incompleteBookList.innerHTML = '';
   }
 
-  if (bookList.length === 0) {
+  if (!hasComplete) {
     completeBookList.innerHTML = `<div id="noCompleteBook" class='no-books'>&#9785 Belum ada buku yang selesai dibaca nih</div>`;
   } else {
     completeBookList.innerHTML = '';
