@@ -56,6 +56,8 @@ document.getElementById('bookFormIsComplete').addEventListener('input', () => {
   }
 });
 
+document.getElementById('copyright').innerHTML = `&copy; ${new Date().getFullYear()} by Ma'mur Zaky Nurrokhman`
+
 const addBook = () => {
   const bookTitle = document.getElementById('bookFormTitle').value;
   const bookAuthor = document.getElementById('bookFormAuthor').value;

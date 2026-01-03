@@ -22,13 +22,11 @@ body {
   /* Library-inspired warm tones: paper / wood palette */
   background: linear-gradient(135deg, #f7f1e6 0%, #e6d3b8 45%, #cdb08a 100%);
   min-height: 100vh;
-  padding: 20px;
 }
 
 header {
   text-align: center;
   color: var(--soothing-dark-brown);
-  margin-bottom: 40px;
   padding: 30px 0;
 }
 
@@ -44,6 +42,7 @@ main {
   width: 100%;
   max-width: 1000px;
   margin: auto;
+  padding: 20px;
 }
 
 .no-books {
@@ -53,7 +52,7 @@ main {
 
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(1, minmax(280px, 1fr));
   gap: 20px;
 }
 
@@ -189,18 +188,6 @@ input[type="checkbox"]:checked::before {
   align-items: center;
 }
 
-.book-list-container {
-  width: 100%;
-  border-radius: 0 0 12px 12px;
-  border-top: 0;
-  border-left: 2px;
-  border-right: 2px;
-  border-bottom: 2px;
-  border-color: var(--teak);
-  border-style: solid;
-  padding: 12px;
-}
-
 .btn-submit {
   width: 100%;
 }
@@ -248,8 +235,8 @@ input[type="checkbox"]:checked::before {
 
 .edit-card {
   display: none;
-  width: 100%;
-  max-width: 1000px;
+  width: 90%;
+  max-width: 960px;
   height: fit-content;
   position: fixed;
   background: linear-gradient(135deg, #f7f1e6 0%, #e6d3b8 45%, #cdb08a 100%);
@@ -262,4 +249,30 @@ input[type="checkbox"]:checked::before {
 
 .edit-inline {
   justify-content: right;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1em;
+  gap: 1em;
+  justify-content: center;
+  color: var(--soothing-dark-brown);
+}
+
+#urlsContainer {
+  display: flex;
+  gap: 1em;
+}
+
+#urlsContainer a {
+  display: flex;
+  color: var(--soothing-dark-brown);
+  text-decoration: none;
+  gap: 4px;
+}
+
+#urlsContainer a img {
+  width: 1em;
+  height: 1em;
 }
